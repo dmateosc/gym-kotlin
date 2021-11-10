@@ -1,0 +1,41 @@
+
+spring:
+  application:
+    name: 'gym'
+  datasource:
+    #    url : "jdbc:postgresql://gymdb.cgfm4ubpjebo.eu-west-3.rds.amazonaws.com:5432/postgres" ##postgresdb.cgfm4ubpjebo.eu-west-3.rds.amazonaws.com
+    url: jdbc:postgresql://localhost:5433/gym
+    username: gym
+    password: gym
+  jpa:
+    data:
+      mongodb:
+        uri: mongodb+srv://gym:2dQbFblLS8ABlvRg@cluster0.6hzbg.mongodb.net/gym?retryWrites=true&w=majority
+    hibernate:
+      ddl-auto: none
+      show-sql: false
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        #implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgresPlusDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        #enable_lazy_load_no_trans: true
+      open-in-view: false
+cloud:
+  aws:
+    stack:
+      auto: false
+    credentials:
+      profile-name: default
+    region:
+      auto: false
+      static: eu-west-3
+server:
+  port: 8081
+jwt:
+  secret: "clave_secret"
