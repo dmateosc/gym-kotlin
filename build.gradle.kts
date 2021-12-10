@@ -33,6 +33,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
+    implementation("org.hibernate:hibernate-core:5.4.9.Final")
+    implementation("io.github.cdimascio:java-dotenv:5.1.3")
+    implementation ("org.apache.tomcat:tomcat-dbcp:9.0.29")
+
 
     //security
 
