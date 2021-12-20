@@ -9,7 +9,6 @@ class UserRequestMapper {
     fun entityToDto(userRequest: UserRequest): User {
 
         return User(
-            UserId(userRequest.userId),
             Name(userRequest.name),
             LastName(userRequest.first_lastname),
             LastName(userRequest.second_lastname),
@@ -22,7 +21,7 @@ class UserRequestMapper {
 
     fun dtoToEntity(user: User): UserRequest {
         return UserRequest(
-            userId = user.userId.value,
+            userId = user.userId!!.value,
             dni = user.dni.value,
             name = user.name.value,
             first_lastname = user.firstLastName.value,

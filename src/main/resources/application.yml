@@ -1,5 +1,7 @@
 
 spring:
+  security:
+    ignored: true
   application:
     name: 'gym'
   datasource:
@@ -11,11 +13,10 @@ spring:
     data:
       mongodb:
         uri: mongodb+srv://gym:2dQbFblLS8ABlvRg@cluster0.6hzbg.mongodb.net/gym?retryWrites=true&w=majority
+
     hibernate:
       ddl-auto: none
       show-sql: false
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         #implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
 
     properties:
@@ -26,6 +27,8 @@ spring:
             non_contextual_creation: true
         #enable_lazy_load_no_trans: true
       open-in-view: false
+    generate-ddl: false
+    show-sql: true
 cloud:
   aws:
     stack:

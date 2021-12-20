@@ -6,12 +6,12 @@ import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
 
-@Table(name = "user")
+@Table(name = "gym_user")
 @Entity
 class UserEntity (
 
     @Id
-    @Column
+    @Column(name= "user_id")
     val userId: String,
     @Column
     val dni: String,

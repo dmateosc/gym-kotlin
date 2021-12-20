@@ -9,7 +9,7 @@ import com.example.testskotlin.user.infraestructure.repository.UserCrudRepositor
 import org.springframework.beans.factory.annotation.Autowired
 
 import org.springframework.stereotype.Repository
-
+import java.util.*
 
 
 @Repository
@@ -17,6 +17,8 @@ class UserRepositoryPostgreSQL @Autowired constructor(private var userCrudReposi
 
 
     override fun save(user: User) {
+        takeIf { user.userId == null}?. apply { user.userId = UserId(UUID.randomUUID().toString())  }
+
         userCrudRepository.save(UserMapper().dtoToEntity(user))
     }
 

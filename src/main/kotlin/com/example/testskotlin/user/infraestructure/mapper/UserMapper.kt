@@ -22,7 +22,7 @@ class UserMapper {
 
     fun dtoToEntity(user: User):UserEntity{
         return UserEntity(
-            userId = user.userId.value,
+            userId = user.userId!!.value,
             dni = user.dni.value,
             name = user.name.value,
             first_lastname = user.firstLastName.value,

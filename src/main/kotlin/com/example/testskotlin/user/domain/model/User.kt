@@ -1,20 +1,54 @@
 package com.example.testskotlin.user.domain.model
 
 import java.lang.Exception
-import java.util.*
-import javax.persistence.Column
-import javax.persistence.Id
 
 class User(
-    var userId: UserId,
-    var name: Name,
-    var firstLastName: LastName,
-    var secondLastName: LastName,
-    var email: Email,
-    var age: Age,
-    var password: Password,
-    var dni: DNI
 ) {
+    var userId: UserId? = null
+    lateinit var name: Name
+    lateinit var firstLastName: LastName
+    lateinit var secondLastName: LastName
+    lateinit var email: Email
+    lateinit var age: Age
+    lateinit var password: Password
+    lateinit var dni: DNI
+
+    constructor(
+        name: Name,
+        firstLastName: LastName,
+        secondLastName: LastName,
+        email: Email,
+        age: Age,
+        password: Password,
+        dni: DNI
+    ) : this(){
+        this.name = name
+        this.secondLastName = secondLastName
+        this.email = email
+        this.firstLastName = firstLastName
+        this.age = age
+        this.password = password
+        this.dni = dni
+    }
+
+    constructor(
+        userId: UserId, name: Name,
+        firstLastName: LastName,
+        secondLastName: LastName,
+        email: Email,
+        age: Age,
+        password: Password,
+        dni: DNI
+    ) : this(){
+        this.userId = userId
+        this.name = name
+        this.secondLastName = secondLastName
+        this.email = email
+        this.firstLastName = firstLastName
+        this.age = age
+        this.password = password
+        this.dni = dni
+    }
 
     fun create(
         userId: UserId,
@@ -26,33 +60,34 @@ class User(
         email: Email,
         password: Password
     ): User {
-        return User(userId, name, fistLastName,secondLastName, email,age, password,dni)
+        return User(userId, name, fistLastName, secondLastName, email, age, password, dni)
     }
 }
 
 data class UserId(val value: String)
 
-data class DNI(val value: String){
+data class DNI(val value: String) {
     init {
-        if(value.length!=9 || value[8].isDigit()) throw Exception()
+        if (value.length != 9 || value[8].isDigit()) throw Exception("digits lenght isn't correct")
     }
 }
 
 data class Name(val value: String) {
     init {
-        value.takeIf { s -> s.isNotEmpty() }.apply { throw Exception() }
+        value.takeIf { s -> s.isEmpty() }?. apply { throw Exception("Name value is empty") }
+
     }
 }
 
 data class LastName(val value: String) {
     init {
-        value.takeIf { s -> s.isNotEmpty() }.apply { throw Exception() }
+        value.takeIf { s -> s.isEmpty() }?. apply { throw Exception("lastname value is empty") }
     }
 }
 
 data class Email(val value: String) {
     init {
-        value.takeIf { s -> s.isBlank() }.apply { throw Exception() }
+        value.takeIf { s -> s.isEmpty() }?. apply { throw Exception("email value is empty") }
     }
 }
 

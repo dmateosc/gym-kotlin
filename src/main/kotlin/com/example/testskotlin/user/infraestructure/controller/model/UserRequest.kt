@@ -1,7 +1,7 @@
 package com.example.testskotlin.user.infraestructure.controller.model
 
 data class UserRequest(
-    val userId: String,
+    val userId: String? = "",
     val dni: String,
     val name: String,
     val first_lastname: String,
