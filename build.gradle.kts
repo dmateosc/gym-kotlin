@@ -50,7 +50,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.security:spring-security-config")
     implementation("org.springframework.security:spring-security-jwt:1.1.1.RELEASE")
-}
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.6.1")}
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {

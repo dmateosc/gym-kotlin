@@ -9,11 +9,10 @@ spring:
     url: jdbc:postgresql://localhost:5433/gym
     username: gym
     password: gym
-  jpa:
-    data:
-      mongodb:
-        uri: mongodb+srv://gym:2dQbFblLS8ABlvRg@cluster0.6hzbg.mongodb.net/gym?retryWrites=true&w=majority
 
+  data:
+    mongodb:
+      uri: mongodb+srv://gym:2dQbFblLS8ABlvRg@cluster0.6hzbg.mongodb.net/gym?retryWrites=true&w=majority
     hibernate:
       ddl-auto: none
       show-sql: false

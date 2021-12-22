@@ -4,7 +4,7 @@ import com.example.testskotlin.user.domain.model.*
 import com.example.testskotlin.user.infraestructure.repository.entity.UserEntity
 
 
-class UserMapper {
+class UserPostgreSQLMapper {
 
     fun entityToDto(userEntity: UserEntity): User{
 
