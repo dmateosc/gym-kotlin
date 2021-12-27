@@ -47,12 +47,26 @@ class UserController{
     @GetMapping
     fun userFinder(@RequestBody userRequest: UserRequest) : ResponseEntity<UserResponse>{
         val user = UserFinder(userRepositoryPostgreSQL).finder(UserId(userRequest.userId!!))
-        return ResponseEntity(UserResponse(user.userId!!.value, user.name.value),HttpStatus.OK);
+        return ResponseEntity(UserResponse(user.userId().value, user.name().value),HttpStatus.OK);
     }
     @PostMapping
     fun createUser(@RequestBody userRequest: UserRequest){
-        userCreatorSql.create(UserRequestMapper().entityToDto(userRequest))
-        userCreatorMongo.create(UserRequestMapper().entityToDto(userRequest))
+        userCreatorSql.create(
+            userRequest.name,
+            userRequest.first_lastname,
+            userRequest.second_lastname,
+            userRequest.email,
+            userRequest.age,
+            userRequest.password,
+            userRequest.dni)
+        userCreatorMongo.create(
+            userRequest.name,
+            userRequest.first_lastname,
+            userRequest.second_lastname,
+            userRequest.email,
+            userRequest.age,
+            userRequest.password,
+            userRequest.dni)
     }
 
 }

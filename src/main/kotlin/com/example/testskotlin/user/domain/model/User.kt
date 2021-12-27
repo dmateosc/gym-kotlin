@@ -1,17 +1,18 @@
 package com.example.testskotlin.user.domain.model
 
+import com.example.testskotlin.user.domain.exceptions.errors.UserException
 import java.lang.Exception
 
 class User(
 ) {
-    var userId: UserId? = null
-    lateinit var name: Name
-    lateinit var firstLastName: LastName
-    lateinit var secondLastName: LastName
-    lateinit var email: Email
-    lateinit var age: Age
-    lateinit var password: Password
-    lateinit var dni: DNI
+    private  var userId: UserId? = null
+    private lateinit var name: Name
+    private lateinit var firstLastName: LastName
+    private lateinit var secondLastName: LastName
+    private lateinit var email: Email
+    private lateinit var age: Age
+    private lateinit var password: Password
+    private lateinit var dni: DNI
 
     constructor(
         name: Name,
@@ -50,6 +51,38 @@ class User(
         this.dni = dni
     }
 
+
+    fun userId(): UserId{
+        return userId!!
+    }
+
+    fun name(): Name{
+        return name
+    }
+    fun firstLastName(): LastName{
+        return firstLastName
+    }
+
+    fun secondLastName(): LastName{
+        return secondLastName
+    }
+
+    fun email(): Email{
+        return email
+    }
+
+    fun age(): Age{
+        return age
+    }
+
+    fun password(): Password{
+        return password
+    }
+
+    fun dni(): DNI{
+        return dni
+    }
+
     fun create(
         userId: UserId,
         name: Name,
@@ -68,26 +101,26 @@ data class UserId(val value: String)
 
 data class DNI(val value: String) {
     init {
-        if (value.length != 9 || value[8].isDigit()) throw Exception("digits lenght isn't correct")
+        if (value.length != 9 || value[8].isDigit()) throw UserException.UserIsEmpty("digits length isn't correct")
     }
 }
 
 data class Name(val value: String) {
     init {
-        value.takeIf { s -> s.isEmpty() }?. apply { throw Exception("Name value is empty") }
+        value.takeIf { s -> s.isEmpty() }?. apply { throw UserException.UserIsEmpty("Name value is empty") }
 
     }
 }
 
 data class LastName(val value: String) {
     init {
-        value.takeIf { s -> s.isEmpty() }?. apply { throw Exception("lastname value is empty") }
+        value.takeIf { s -> s.isEmpty() }?. apply { throw UserException.UserIsEmpty("lastname value is empty") }
     }
 }
 
 data class Email(val value: String) {
     init {
-        value.takeIf { s -> s.isEmpty() }?. apply { throw Exception("email value is empty") }
+        value.takeIf { s -> s.isEmpty() }?. apply { throw UserException.UserIsEmpty("email value is empty") }
     }
 }
 
