@@ -2,6 +2,7 @@ package com.example.testskotlin.user.infraestructure.controller
 
 import com.example.testskotlin.user.application.create.UserCreator
 import com.example.testskotlin.user.domain.repository.UserRepository
+import com.example.testskotlin.user.infraestructure.UserRepositoryMongoDB
 import com.example.testskotlin.user.infraestructure.UserRepositoryPostgreSQL
 import com.example.testskotlin.user.infraestructure.controller.model.UserRequest
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -21,21 +22,23 @@ import org.springframework.test.web.servlet.post
 )
 internal class UserControllerTest{
 
-
-
-
     @Autowired
     lateinit var mockMvc: MockMvc
 
     @MockkBean
-    lateinit var userRepository: UserRepositoryPostgreSQL
+    lateinit var userRepositorySql: UserRepositoryPostgreSQL
 
+    @MockkBean
+    lateinit var userRepositoryMongoDB: UserRepositoryMongoDB
 
-    lateinit var userCreator: UserCreator
+    lateinit var userCreatorSql: UserCreator
+    lateinit var userCreatorMongoDB: UserCreator
+
 
     @BeforeEach
     fun setUp(){
-        userCreator = UserCreator(userRepository)
+        userCreatorSql = UserCreator(userRepositorySql)
+        userCreatorMongoDB = UserCreator(userRepositoryMongoDB)
     }
 
 

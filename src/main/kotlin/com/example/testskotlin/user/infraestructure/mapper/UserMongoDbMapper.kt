@@ -23,14 +23,14 @@ class UserMongoDbMapper {
 
     fun dtoToEntity(user: User):UserMongo{
         return UserMongo(
-            userId = user.userId!!.value,
-            dni = user.dni.value,
-            name = user.name.value,
-            first_lastname = user.firstLastName.value,
-            second_lastname = user.secondLastName.value,
-            age = user.age.value,
-            email = user.email.value,
-            password = user.password.value
+            userId = user.userId().value,
+            dni = user.dni().value,
+            name = user.name().value,
+            first_lastname = user.firstLastName().value,
+            second_lastname = user.secondLastName().value,
+            age = user.age().value,
+            email = user.email().value,
+            password = user.password().value
         )
     }
 
