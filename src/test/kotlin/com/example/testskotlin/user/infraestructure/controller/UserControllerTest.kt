@@ -25,7 +25,7 @@ import org.springframework.test.web.servlet.post
 @ExtendWith(MockKExtension::class)
 @WebMvcTest(
     controllers = [UserController::class]
-           )
+)
 internal class UserControllerTest {
 
     @Autowired
@@ -38,21 +38,12 @@ internal class UserControllerTest {
     lateinit var userRepositoryMongoDB: UserRepositoryMongoDB
 
 
-    @MockK
-    lateinit var userCreatorSql: UserCreator
-    @MockK
-    lateinit var userCreatorMongoDB: UserCreator
-
-
-
-
-
     @Test
     fun `should be ok`() {
 
-        every { userRepositorySql.save(any()) } just  Runs
+        every { userRepositorySql.save(any()) } just Runs
 
-        every { userRepositoryMongoDB.save(any()) } just  Runs
+        every { userRepositoryMongoDB.save(any()) } just Runs
 
         every {
             UserCreator(userRepositorySql).create(
@@ -63,7 +54,7 @@ internal class UserControllerTest {
                 age = 1,
                 secondLastName = "prueba",
                 firstLastName = "prueba"
-                                 )
+            )
         } returns Unit
 
         every {
@@ -75,7 +66,7 @@ internal class UserControllerTest {
                 age = 1,
                 secondLastName = "prueba",
                 firstLastName = "prueba"
-                                 )
+            )
         } returns Unit
 
 
@@ -90,13 +81,13 @@ internal class UserControllerTest {
                     age = 1,
                     second_lastname = "prueba",
                     first_lastname = "prueba"
-                           )
-                                                       )
+                )
+            )
             accept = MediaType.APPLICATION_JSON
         }
             .andExpect {
-            status { isOk() }
-        }
+                status { isOk() }
+            }
     }
 
 
@@ -114,8 +105,8 @@ internal class UserControllerTest {
                     dni = "prueba",
                     age = 1,
                     second_lastname = "prueba"
-                           )
-                                                       )
+                )
+            )
             accept = MediaType.APPLICATION_JSON
         }.andExpect {
             status { isBadRequest() }
