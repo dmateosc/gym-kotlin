@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class UserController {
+class UserController{
 
-
-    private var userMongoDbRepository: UserRepositoryMongoDB
-    private var userRepositoryPostgreSQL: UserRepositoryPostgreSQL
+    @Autowired private var userMongoDbRepository: UserRepositoryMongoDB
+    @Autowired private var userRepositoryPostgreSQL: UserRepositoryPostgreSQL
 
     @Autowired
     constructor(
@@ -40,8 +39,8 @@ class UserController {
 
     @PostMapping
     fun createUser(@RequestBody userRequest: UserRequest) {
-        val userCreatorSQL = UserCreator(userRepositoryPostgreSQL)
-        userCreatorSQL.create(
+
+        UserCreator(userRepositoryPostgreSQL).create(
             userRequest.name,
             userRequest.first_lastname,
             userRequest.second_lastname,
@@ -49,9 +48,8 @@ class UserController {
             userRequest.age,
             userRequest.password,
             userRequest.dni
-                             )
-        val userCreatorMongoDB = UserCreator(userMongoDbRepository)
-        userCreatorMongoDB.create(
+        )
+        UserCreator(userMongoDbRepository).create(
             userRequest.name,
             userRequest.first_lastname,
             userRequest.second_lastname,
@@ -59,7 +57,7 @@ class UserController {
             userRequest.age,
             userRequest.password,
             userRequest.dni
-                                 )
+        )
     }
 
 }

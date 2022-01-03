@@ -2,8 +2,10 @@ package com.example.testskotlin.user.application.create
 
 import com.example.testskotlin.user.domain.model.*
 import com.example.testskotlin.user.domain.repository.UserRepository
+import org.springframework.stereotype.Service
 import java.util.*
 
+@Service
 class UserCreator(
     private val userRepository: UserRepository
 ) {
