@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class UserController{
 
-    @Autowired private var userMongoDbRepository: UserRepositoryMongoDB
-    @Autowired private var userRepositoryPostgreSQL: UserRepositoryPostgreSQL
+    private var userMongoDbRepository: UserRepositoryMongoDB
+    private var userRepositoryPostgreSQL: UserRepositoryPostgreSQL
 
     @Autowired
     constructor(
