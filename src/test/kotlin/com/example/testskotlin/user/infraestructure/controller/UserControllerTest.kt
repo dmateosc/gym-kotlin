@@ -37,28 +37,16 @@ internal class UserControllerTest {
     @MockkBean
     lateinit var userRepositoryMongoDB: UserRepositoryMongoDB
 
+    @MockkBean
+    lateinit var userCreatorMongoDB: UserCreator
+
+
 
     @Test
     fun `should be ok`() {
 
-        every { userRepositorySql.save(any()) } just Runs
-
-        every { userRepositoryMongoDB.save(any()) } just Runs
-
         every {
-            UserCreator(userRepositorySql).create(
-                name = "prueba",
-                password = "prueba",
-                email = "prueba",
-                dni = "28968669P",
-                age = 1,
-                secondLastName = "prueba",
-                firstLastName = "prueba"
-            )
-        } returns Unit
-
-        every {
-            UserCreator(userRepositoryMongoDB).create(
+            userCreatorMongoDB.create(
                 name = "prueba",
                 password = "prueba",
                 email = "prueba",

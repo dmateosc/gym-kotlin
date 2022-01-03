@@ -5,7 +5,6 @@ import com.example.testskotlin.user.application.find.UserFinder
 import com.example.testskotlin.user.domain.model.UserId
 import com.example.testskotlin.user.infraestructure.UserRepositoryMongoDB
 import com.example.testskotlin.user.infraestructure.UserRepositoryPostgreSQL
-import com.example.testskotlin.user.infraestructure.UserRepositoryPostgreSQL2
 import com.example.testskotlin.user.infraestructure.controller.model.UserRequest
 import com.example.testskotlin.user.infraestructure.controller.model.UserResponse
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,19 +21,20 @@ class UserController{
     @Autowired private var userMongoDbRepository: UserRepositoryMongoDB
     @Autowired private var userRepositoryPostgreSQL: UserRepositoryPostgreSQL
 
-    @Autowired private var userRepositoryPostgreSQL2: UserRepositoryPostgreSQL2
+    @Autowired private var userCreatorMongoDB: UserCreator
+    @Autowired private var userCreatorSQL: UserCreator
+
 
 
     @Autowired
     constructor(
         userRepositoryPostgreSQL: UserRepositoryPostgreSQL,
-        userRepositoryPostgreSQL2: UserRepositoryPostgreSQL2,
-        userMongoDbRepository: UserRepositoryMongoDB,
-
+        userMongoDbRepository: UserRepositoryMongoDB
         ) {
         this.userMongoDbRepository = userMongoDbRepository
         this.userRepositoryPostgreSQL = userRepositoryPostgreSQL
-        this.userRepositoryPostgreSQL2 = userRepositoryPostgreSQL2
+        this.userCreatorSQL = UserCreator(userRepositoryPostgreSQL)
+        this.userCreatorMongoDB = UserCreator(userMongoDbRepository)
     }
 
     @GetMapping
@@ -46,7 +46,7 @@ class UserController{
     @PostMapping
     fun createUser(@RequestBody userRequest: UserRequest) {
 
-        UserCreator(userRepositoryPostgreSQL).create(
+        userCreatorSQL.create(
             userRequest.name,
             userRequest.first_lastname,
             userRequest.second_lastname,
@@ -55,16 +55,8 @@ class UserController{
             userRequest.password,
             userRequest.dni
         )
-        UserCreator(userRepositoryPostgreSQL2).create(
-            userRequest.name,
-            userRequest.first_lastname,
-            userRequest.second_lastname,
-            userRequest.email,
-            userRequest.age,
-            userRequest.password,
-            userRequest.dni
-                                                    )
-        UserCreator(userMongoDbRepository).create(
+
+        userCreatorMongoDB.create(
             userRequest.name,
             userRequest.first_lastname,
             userRequest.second_lastname,
