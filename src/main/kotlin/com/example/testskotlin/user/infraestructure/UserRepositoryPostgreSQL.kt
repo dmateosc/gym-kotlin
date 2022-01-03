@@ -8,6 +8,7 @@ import com.example.testskotlin.user.infraestructure.exceptions.UserException
 import com.example.testskotlin.user.infraestructure.mapper.UserPostgreSQLMapper
 import com.example.testskotlin.user.infraestructure.repository.UserCrudRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 
 import org.springframework.stereotype.Repository
 import java.util.*

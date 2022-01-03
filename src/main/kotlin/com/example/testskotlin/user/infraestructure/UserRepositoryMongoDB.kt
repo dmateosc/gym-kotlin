@@ -7,10 +7,12 @@ import com.example.testskotlin.user.domain.repository.UserRepository
 import com.example.testskotlin.user.infraestructure.mapper.UserMongoDbMapper
 import com.example.testskotlin.user.infraestructure.repository.UserMongoRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Repository
-import java.util.*
 
 @Repository
+@Primary
 class UserRepositoryMongoDB @Autowired constructor(private var userMongoRepository: UserMongoRepository) : UserRepository {
     override fun save(user: User) {
         userMongoRepository.save(UserMongoDbMapper().dtoToEntity(user))
