@@ -50,7 +50,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.security:spring-security-config")
     implementation("org.springframework.security:spring-security-jwt:1.1.1.RELEASE")
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.6.1")}
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.6.1")
+    implementation ("io.projectreactor:reactor-bus:2.0.8.RELEASE")
+    implementation("io.projectreactor.spring:reactor-spring-messaging:2.0.7.RELEASE")
+    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.5")
+    implementation("io.projectreactor:reactor-core:2.0.8.RELEASE")
+
+}
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {

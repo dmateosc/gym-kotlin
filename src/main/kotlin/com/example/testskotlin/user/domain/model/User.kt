@@ -1,7 +1,6 @@
 package com.example.testskotlin.user.domain.model
 
 import com.example.testskotlin.user.domain.exceptions.errors.UserException
-import java.lang.Exception
 
 class User(
 ) {

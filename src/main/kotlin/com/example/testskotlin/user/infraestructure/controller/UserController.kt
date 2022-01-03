@@ -3,16 +3,11 @@ package com.example.testskotlin.user.infraestructure.controller
 import com.example.testskotlin.user.application.create.UserCreator
 import com.example.testskotlin.user.application.find.UserFinder
 import com.example.testskotlin.user.domain.model.UserId
-import com.example.testskotlin.user.domain.repository.UserRepository
 import com.example.testskotlin.user.infraestructure.UserRepositoryMongoDB
 import com.example.testskotlin.user.infraestructure.UserRepositoryPostgreSQL
 import com.example.testskotlin.user.infraestructure.controller.model.UserRequest
 import com.example.testskotlin.user.infraestructure.controller.model.UserResponse
-import com.example.testskotlin.user.infraestructure.mapper.UserRequestMapper
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Primary
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -21,52 +16,50 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class UserController{
+class UserController {
 
 
-
-    private var userRepositoryPostgreSQL: UserRepository
-    private var userMongoDbRepository: UserRepository
-
-    @Qualifier("userCreatorSql")
-    private var  userCreatorSql: UserCreator
-    @Qualifier("userCreatorMongo")
-    private var userCreatorMongo: UserCreator
+    private var userMongoDbRepository: UserRepositoryMongoDB
+    private var userRepositoryPostgreSQL: UserRepositoryPostgreSQL
 
     @Autowired
-    constructor(userRepositoryPostgreSQL: UserRepositoryPostgreSQL,
-                userMongoDbRepository: UserRepositoryMongoDB,
+    constructor(
+        userRepositoryPostgreSQL: UserRepositoryPostgreSQL,
+        userMongoDbRepository: UserRepositoryMongoDB,
 
-    ){
-        this.userRepositoryPostgreSQL = userRepositoryPostgreSQL
+        ) {
         this.userMongoDbRepository = userMongoDbRepository
-        this.userCreatorSql = UserCreator(userRepositoryPostgreSQL)
-        this.userCreatorMongo = UserCreator(userMongoDbRepository)
+        this.userRepositoryPostgreSQL = userRepositoryPostgreSQL
     }
 
     @GetMapping
-    fun userFinder(@RequestBody userRequest: UserRequest) : ResponseEntity<UserResponse>{
+    fun userFinder(@RequestBody userRequest: UserRequest): ResponseEntity<UserResponse> {
         val user = UserFinder(userRepositoryPostgreSQL).finder(UserId(userRequest.userId!!))
-        return ResponseEntity(UserResponse(user.userId().value, user.name().value),HttpStatus.OK);
+        return ResponseEntity(UserResponse(user.userId().value, user.name().value), HttpStatus.OK);
     }
+
     @PostMapping
-    fun createUser(@RequestBody userRequest: UserRequest){
-        userCreatorSql.create(
+    fun createUser(@RequestBody userRequest: UserRequest) {
+        val userCreatorSQL = UserCreator(userRepositoryPostgreSQL)
+        userCreatorSQL.create(
             userRequest.name,
             userRequest.first_lastname,
             userRequest.second_lastname,
             userRequest.email,
             userRequest.age,
             userRequest.password,
-            userRequest.dni)
-        userCreatorMongo.create(
+            userRequest.dni
+                             )
+        val userCreatorMongoDB = UserCreator(userMongoDbRepository)
+        userCreatorMongoDB.create(
             userRequest.name,
             userRequest.first_lastname,
             userRequest.second_lastname,
             userRequest.email,
             userRequest.age,
             userRequest.password,
-            userRequest.dni)
+            userRequest.dni
+                                 )
     }
 
 }
