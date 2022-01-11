@@ -1,6 +1,6 @@
 package gym.user.domain.exceptions.handlers
 
-import com.example.testskotlin.user.domain.exceptions.errors.UserException
+import gym.user.domain.exceptions.errors.UserException
 import org.springframework.web.bind.annotation.ExceptionHandler
 
 class ErrorHandler {

@@ -1,7 +1,7 @@
 package gym.user.application.create
 
-import com.example.testskotlin.user.domain.model.*
-import com.example.testskotlin.user.domain.repository.UserRepository
+import gym.user.domain.model.*
+import gym.user.domain.repository.UserRepository
 import org.springframework.stereotype.Service
 import java.util.*
 

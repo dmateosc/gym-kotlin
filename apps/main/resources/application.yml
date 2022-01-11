@@ -9,7 +9,6 @@ spring:
     url: jdbc:postgresql://localhost:5433/gym
     username: gym
     password: gym
-
   data:
     mongodb:
       uri: mongodb+srv://gym:2dQbFblLS8ABlvRg@cluster0.6hzbg.mongodb.net/gym?retryWrites=true&w=majority
@@ -17,7 +16,6 @@ spring:
       ddl-auto: none
       show-sql: false
         #implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgresPlusDialect

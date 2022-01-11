@@ -26,8 +26,19 @@ services:
       RABBITMQ_DEFAULT_VHOST: gym
     ports:
     - 5672:5672
+    networks:
+    - gym-network
     volumes:
     - ./rabbitmq_info:/var/lib/rabbitmq
     - ./config_rabbit_mq:/etc/rabbitmq/rabbitmq.config
+  mongodb:
+    container_name: mongo_db_gym
+    image: mongo:latest
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME: gym
+      - MONGO_INITDB_ROOT_PASSWORD: gym
+    networks:
+      - gym-network
 networks:
   gym-network:

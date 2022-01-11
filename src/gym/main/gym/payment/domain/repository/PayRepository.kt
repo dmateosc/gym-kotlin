@@ -1,8 +1,8 @@
 package gym.payment.domain.repository
 
-import com.example.testskotlin.payment.domain.model.PayId
-import com.example.testskotlin.payment.domain.model.Pays
-import com.example.testskotlin.user.domain.model.UserId
+import gym.payment.domain.model.PayId
+import gym.payment.domain.model.Pays
+import gym.user.domain.model.UserId
 
 interface PayRepository {
 

@@ -1,9 +1,8 @@
 package gym.payment.domain.model
 
-import com.example.testskotlin.user.domain.model.UserId
+import gym.user.domain.model.UserId
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class Pays() {
     var payId: PayId? = null

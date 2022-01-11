@@ -1,6 +1,6 @@
 package gym.user.domain.model
 
-import com.example.testskotlin.user.domain.exceptions.errors.UserException
+import gym.user.domain.exceptions.errors.UserException
 
 class User(
 ) {

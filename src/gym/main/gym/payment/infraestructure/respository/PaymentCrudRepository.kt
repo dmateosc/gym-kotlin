@@ -1,6 +1,6 @@
 package gym.payment.infraestructure.respository
 
-import com.example.testskotlin.payment.infraestructure.respository.model.PaysEntity
+import gym.payment.infraestructure.respository.model.PaysEntity
 import org.springframework.data.repository.CrudRepository
 
 interface PaymentCrudRepository : CrudRepository<PaysEntity, String> {

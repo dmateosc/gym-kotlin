@@ -6,5 +6,5 @@ pluginManagement {
 }
 rootProject.name = "gym-kotlin"
 
-include("gym")
+include(":gym")
 project(":gym").projectDir = File("src/gym")

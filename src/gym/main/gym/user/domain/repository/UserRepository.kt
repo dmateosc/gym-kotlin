@@ -1,8 +1,8 @@
 package gym.user.domain.repository
 
-import com.example.testskotlin.user.domain.model.Name
-import com.example.testskotlin.user.domain.model.User
-import com.example.testskotlin.user.domain.model.UserId
+import gym.user.domain.model.Name
+import gym.user.domain.model.User
+import gym.user.domain.model.UserId
 
 interface UserRepository {
 
