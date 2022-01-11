@@ -4,4 +4,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = "testsKotlin"
+rootProject.name = "gym-kotlin"
+
+include("gym")
+project(":gym").projectDir = File("src/gym")

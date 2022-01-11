@@ -16,5 +16,18 @@ services:
     volumes:
     - ./dbfiles:/docker-entrypoint-initdb.d
     -  /var/lib/postgres_data:/var/lib/postgresql/data
+  rabbitmq:
+    container_name: rabbit_mq_gym
+    image: rabbitmq:latest
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: gym
+      RABBITMQ_DEFAULT_PASS: gym
+      RABBITMQ_DEFAULT_VHOST: gym
+    ports:
+    - 5672:5672
+    volumes:
+    - ./rabbitmq_info:/var/lib/rabbitmq
+    - ./config_rabbit_mq:/etc/rabbitmq/rabbitmq.config
 networks:
   gym-network:

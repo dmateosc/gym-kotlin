@@ -1,15 +1,23 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
+
 plugins {
     id("org.springframework.boot") version "2.5.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.5.31"
     kotlin("plugin.spring") version "1.5.31"
     kotlin("plugin.jpa") version "1.4.32"
+    application
 }
 
-group = "com.example"
+allprojects {
+
+    apply (plugin = "java")
+    apply (plugin= "io.spring.dependency-management")
+    apply (plugin = "org.springframework.boot")
+
+group = "gym-kotlin"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_15
 
@@ -25,9 +33,9 @@ repositories {
 }
 
 dependencies {
-
-
     implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -43,7 +51,7 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
     testImplementation("io.mockk:mockk:1.12.0")
     testImplementation("com.ninja-squad:springmockk:3.0.1")
     runtimeOnly("org.postgresql:postgresql")
@@ -65,6 +73,9 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+
+
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
@@ -73,3 +84,76 @@ tasks.withType<BootBuildImage> {
     builder = "paketobuildpacks/builder:tiny"
     environment = mapOf("BP_NATIVE_IMAGE" to "true")
 }
+
+}
+subprojects{
+    group = "gym.${rootProject.name}"
+    sourceSets {
+        main{
+            java {
+                srcDirs("main")
+            }
+            resources{
+                srcDirs("main/resources")
+            }
+        }
+        test{
+            java {
+                srcDirs("test")
+            }
+            resources{
+                srcDirs("test/resources")
+            }
+        }
+    }
+
+    dependencies{
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+
+    tasks.bootJar {enabled = false}
+
+    tasks.jar{ enabled = true}
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies{
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.5.5")
+    }
+}
+
+sourceSets{
+    main{
+        java{
+            srcDirs("apps/main")
+
+        }
+        resources {
+            srcDirs("apps/main/resources")
+        }
+    }
+    test{
+        java{
+            srcDirs("apps/test")
+
+        }
+        resources {
+            srcDirs("apps/test/resources")
+        }
+    }
+
+
+}
+
+application{
+    mainClass.set("apps.main.Gym")
+}
+
+dependencies{
+   implementation(project(":gym"))
+}
+
