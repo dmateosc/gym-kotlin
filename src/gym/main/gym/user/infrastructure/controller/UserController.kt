@@ -1,5 +1,19 @@
 package gym.user.infrastructure.controller
-
+//
+//import gym.user.application.create.UserCreator
+//import gym.user.application.find.UserFinder
+//import gym.user.domain.model.UserId
+//import gym.user.infrastructure.UserRepositoryMongoDB
+//import gym.user.infrastructure.UserRepositoryPostgreSQL
+//import gym.user.infrastructure.controller.model.UserRequest
+//import gym.user.infrastructure.controller.model.UserResponse
+//import org.springframework.beans.factory.annotation.Autowired
+//import org.springframework.http.HttpStatus
+//import org.springframework.http.ResponseEntity
+//import org.springframework.web.bind.annotation.GetMapping
+//import org.springframework.web.bind.annotation.PostMapping
+//import org.springframework.web.bind.annotation.RequestBody
+//import org.springframework.web.bind.annotation.RestController
 //
 //@RestController
 //class UserController(
