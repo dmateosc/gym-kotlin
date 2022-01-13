@@ -85,7 +85,7 @@ allprojects {
 
 }
 subprojects {
-    group = "gym"
+    group = "${rootProject.name}"
 
     apply {
         plugin("org.jetbrains.kotlin.jvm")
@@ -205,5 +205,6 @@ application {
 
 dependencies {
     implementation(project(":gym"))
+    implementation(project(":shared"))
 }
 

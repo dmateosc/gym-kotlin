@@ -1,7 +1,6 @@
-package gym_app.user.controller.model
+package gym.user.application.create.model
 
-data class UserRequest(
-    val userId: String? = "",
+data class CreateUserRequest (
     val dni: String,
     val name: String,
     val first_lastname: String,

@@ -2,11 +2,12 @@ package gym_app.user.controller
 
 
 import gym.user.application.create.UserCreator
+import gym.user.application.create.model.CreateUserRequest
 import gym.user.application.find.UserFinder
 import gym.user.domain.model.UserId
 import gym.user.infrastructure.UserRepositoryMongoDB
 import gym.user.infrastructure.UserRepositoryPostgreSQL
-import gym.user.infrastructure.controller.model.UserRequest
+import gym_app.user.controller.model.UserRequest
 import gym.user.infrastructure.controller.model.UserResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -34,24 +35,24 @@ class UserController(
     @PostMapping
     fun createUser(@RequestBody userRequest: UserRequest) {
 
-        userCreatorSQL.create(
+        userCreatorSQL.create(CreateUserRequest(
             userRequest.name,
             userRequest.first_lastname,
             userRequest.second_lastname,
             userRequest.email,
             userRequest.age,
             userRequest.password,
-            userRequest.dni
+            userRequest.dni)
         )
 
-        userCreatorMongoDB.create(
+        userCreatorMongoDB.create(CreateUserRequest(
             userRequest.name,
             userRequest.first_lastname,
             userRequest.second_lastname,
             userRequest.email,
             userRequest.age,
             userRequest.password,
-            userRequest.dni
+            userRequest.dni)
         )
     }
 
