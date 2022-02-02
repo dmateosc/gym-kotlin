@@ -3,7 +3,7 @@ package gym_app
 import gym.user.application.create.UserCreator
 import gym.user.infrastructure.UserRepositoryMongoDB
 import gym.user.infrastructure.UserRepositoryPostgreSQL
-import gym_app.user.controller.model.UserRequest
+import gym.user.infrastructure.controller.model.UserRequest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
 import gym.user.infrastructure.repository.UserMongoRepository
