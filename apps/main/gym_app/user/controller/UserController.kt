@@ -29,30 +29,30 @@ class UserController(
     @GetMapping
     fun userFinder(@RequestBody userRequest: UserRequest): ResponseEntity<UserResponse> {
         val user = UserFinder(userRepositoryPostgreSQL).finder(UserId(userRequest.userId!!))
-        return ResponseEntity(UserResponse(user.userId().value, user.name().value), HttpStatus.OK);
+        return ResponseEntity(UserResponse(user.userId().value, user.name().value), HttpStatus.OK)
     }
 
     @PostMapping
     fun createUser(@RequestBody userRequest: UserRequest) {
 
         userCreatorSQL.create(CreateUserRequest(
-            userRequest.name,
-            userRequest.first_lastname,
-            userRequest.second_lastname,
-            userRequest.email,
-            userRequest.age,
-            userRequest.password,
-            userRequest.dni)
+            name = userRequest.name,
+            first_lastname = userRequest.first_lastname,
+            second_lastname = userRequest.second_lastname,
+            email = userRequest.email,
+            age = userRequest.age,
+            password = userRequest.password,
+            dni = userRequest.dni)
         )
 
         userCreatorMongoDB.create(CreateUserRequest(
-            userRequest.name,
-            userRequest.first_lastname,
-            userRequest.second_lastname,
-            userRequest.email,
-            userRequest.age,
-            userRequest.password,
-            userRequest.dni)
+            name = userRequest.name,
+            first_lastname = userRequest.first_lastname,
+            second_lastname = userRequest.second_lastname,
+            email = userRequest.email,
+            age = userRequest.age,
+            password = userRequest.password,
+            dni = userRequest.dni)
         )
     }
 

@@ -6,7 +6,9 @@ import gym.user.infrastructure.UserRepositoryPostgreSQL
 import gym.user.infrastructure.controller.model.UserRequest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
+import gym.user.application.create.model.CreateUserRequest
 import gym.user.infrastructure.repository.UserMongoRepository
+import gym_app.user.controller.UserController
 import io.mockk.*
 import io.mockk.junit5.MockKExtension
 import org.junit.jupiter.api.Test
@@ -19,7 +21,7 @@ import org.springframework.test.web.servlet.post
 
 @ExtendWith(MockKExtension::class)
 @WebMvcTest(
-    controllers = [UserControllerTest::class]
+    controllers = [UserController::class]
 )
 internal class UserControllerTest {
 
@@ -44,13 +46,14 @@ internal class UserControllerTest {
 
         every {
             userCreatorMongoDB.create(
+                CreateUserRequest(
                 name = "prueba",
                 password = "prueba",
                 email = "prueba",
                 dni = "28968669P",
                 age = 1,
-                secondLastName = "prueba",
-                firstLastName = "prueba"
+                second_lastname = "prueba",
+                first_lastname = "prueba")
             )
         } returns Unit
 
