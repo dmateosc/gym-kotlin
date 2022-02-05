@@ -1,10 +1,7 @@
-pluginManagement {
-    repositories {
-        maven { url = uri("https://repo.spring.io/release") }
-        gradlePluginPortal()
-    }
-}
 rootProject.name = "gym-kotlin"
 
-include(":gym")
+include("gym")
 project(":gym").projectDir = File("src/gym")
+
+include("shared")
+project(":shared").projectDir = File("src/shared")

@@ -5,12 +5,13 @@ import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 plugins {
     val kotlinVersion = "1.6.10"
     id("org.springframework.boot") version "2.5.5"
-    id("org.jetbrains.kotlin.jvm") version kotlinVersion
+    id("org.jetbrains.kotlin.jvm") version kotlinVersion apply false
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.jpa") version kotlinVersion
     id("io.spring.dependency-management") version "1.0.6.RELEASE"
     application
 }
+
 
 allprojects {
 
@@ -73,9 +74,6 @@ allprojects {
         }
     }
 
-
-
-
     tasks.withType<Test> {
         useJUnitPlatform()
     }
@@ -87,8 +85,11 @@ allprojects {
 
 }
 subprojects {
-    group = "gym"
+    group = "${rootProject.name}"
 
+    apply {
+        plugin("org.jetbrains.kotlin.jvm")
+    }
 
     sourceSets {
         main {
@@ -162,7 +163,9 @@ buildscript {
     }
 }
 
-apply(plugin = "kotlin-noarg")
+apply {
+    plugin("org.jetbrains.kotlin.jvm")
+}
 
 sourceSets {
     main {
@@ -202,5 +205,6 @@ application {
 
 dependencies {
     implementation(project(":gym"))
+    implementation(project(":shared"))
 }
 
