@@ -18,7 +18,7 @@ import org.springframework.boot.runApplication as runApplication
 
                 )
 @EnableMongoRepositories("gym.user")
-@EnableJpaRepositories("gym.user", entityManagerFactoryRef = "emf")
+@EnableJpaRepositories("gym.user")
 @EntityScan("gym.user")
 class Gym
 fun main(args: Array<String>) {

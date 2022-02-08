@@ -1,65 +1,73 @@
 package gym_app
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.ninjasquad.springmockk.MockkBean
 import gym.user.application.create.UserCreator
+import gym.user.application.create.model.CreateUserRequest
 import gym.user.infrastructure.UserRepositoryMongoDB
 import gym.user.infrastructure.UserRepositoryPostgreSQL
 import gym.user.infrastructure.controller.model.UserRequest
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.ninjasquad.springmockk.MockkBean
-import gym.user.application.create.model.CreateUserRequest
-import gym.user.domain.repository.UserRepository
 import gym.user.infrastructure.repository.UserCrudRepository
-import gym.user.infrastructure.repository.UserMongoRepository
-import gym_app.user.controller.UserController
-import io.mockk.*
-import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.every
 import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.post
+import java.util.*
+import gym.shared.application.UUID
+import gym.user.infrastructure.repository.entity.UserEntity
 
 @ExtendWith(MockKExtension::class)
 @AutoConfigureMockMvc
 @SpringBootTest
+@ComponentScan("gym.user")
 internal class UserControllerTest {
 
     @Autowired
     lateinit var mockMvc: MockMvc
 
-    @MockkBean
-    lateinit var userRepositorySql: UserRepositoryPostgreSQL
 
-    @MockkBean
-    lateinit var userRepositoryMongoDB: UserRepositoryMongoDB
+    private lateinit var userCreatorMongoDB: UserCreator
+    private lateinit var userCreatorSql: UserCreator
 
-    @MockkBean
-    lateinit var userCreatorMongoDB: UserCreator
 
-    @MockkBean
-    lateinit var userCrudRepository: UserCrudRepository
-
+    @BeforeEach
+    private fun setUp() {
+        val repositoryMongo = mockk<UserRepositoryMongoDB>()
+        val repositorySql = mockk<UserRepositoryPostgreSQL>()
+        userCreatorSql = UserCreator(repositorySql)
+        userCreatorMongoDB = UserCreator(repositoryMongo)
+    }
 
     @Test
     fun `should be ok`() {
+
+        val mockUUID = mockk<UUID>()
+
+        every { mockUUID.randomUUID() } returns "5c8126d3-32ac-4d7e-b2cb-e4d71b3cb3e0"
+
 
 
         every {
             userCreatorMongoDB.create(
                 CreateUserRequest(
-                name = "prueba",
-                password = "prueba",
-                email = "prueba",
-                dni = "28968669P",
-                age = 1,
-                second_lastname = "prueba",
-                first_lastname = "prueba")
-            )
+                    name = "prueba",
+                    password = "prueba",
+                    email = "prueba",
+                    dni = "28968669P",
+                    age = 1,
+                    second_lastname = "prueba",
+                    first_lastname = "prueba"
+                                 )
+                                     )
         } returns Unit
 
 
@@ -74,8 +82,8 @@ internal class UserControllerTest {
                     age = 1,
                     second_lastname = "prueba",
                     first_lastname = "prueba"
-                )
-            )
+                           )
+                                                       )
             accept = MediaType.APPLICATION_JSON
         }
             .andExpect {
@@ -98,8 +106,8 @@ internal class UserControllerTest {
                     dni = "prueba",
                     age = 1,
                     second_lastname = "prueba"
-                )
-            )
+                           )
+                                                       )
             accept = MediaType.APPLICATION_JSON
         }.andExpect {
             status { isBadRequest() }

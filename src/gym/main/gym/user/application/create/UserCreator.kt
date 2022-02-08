@@ -1,5 +1,6 @@
 package gym.user.application.create
 
+import gym.shared.application.UUID
 import gym.user.application.create.model.CreateUserRequest
 import gym.user.domain.model.*
 import gym.user.domain.repository.UserRepository
@@ -17,7 +18,7 @@ class UserCreator(
     ) {
         userRepository.save(
             User(
-                UserId(UUID.randomUUID().toString()),
+                UserId(UUID().randomUUID()),
                 Name(createUserRequest.name),
                 LastName(createUserRequest.first_lastname),
                 LastName(createUserRequest.second_lastname),
