@@ -7,22 +7,26 @@ import gym.user.infrastructure.controller.model.UserRequest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
 import gym.user.application.create.model.CreateUserRequest
+import gym.user.domain.repository.UserRepository
+import gym.user.infrastructure.repository.UserCrudRepository
 import gym.user.infrastructure.repository.UserMongoRepository
 import gym_app.user.controller.UserController
 import io.mockk.*
+import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.junit5.MockKExtension
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.post
 
 @ExtendWith(MockKExtension::class)
-@WebMvcTest(
-    controllers = [UserController::class]
-)
+@AutoConfigureMockMvc
+@SpringBootTest
 internal class UserControllerTest {
 
     @Autowired
@@ -37,12 +41,13 @@ internal class UserControllerTest {
     @MockkBean
     lateinit var userCreatorMongoDB: UserCreator
 
-
     @MockkBean
-    lateinit var userMongoRepository: UserMongoRepository
+    lateinit var userCrudRepository: UserCrudRepository
+
 
     @Test
     fun `should be ok`() {
+
 
         every {
             userCreatorMongoDB.create(

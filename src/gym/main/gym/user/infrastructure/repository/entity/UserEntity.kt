@@ -8,7 +8,7 @@ import javax.persistence.Table
 
 @Table(name = "gym_user")
 @Entity
-class UserEntity (
+data class UserEntity (
 
     @Id
     @Column(name= "user_id")
@@ -27,6 +27,5 @@ class UserEntity (
     val age: Int,
     @Column
     val password: String
-
 
 )

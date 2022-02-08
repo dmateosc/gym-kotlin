@@ -8,20 +8,22 @@ import gym.user.domain.repository.UserRepository
 import gym.user.infrastructure.mapper.UserPostgreSQLMapper
 import gym.user.infrastructure.repository.UserCrudRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Lazy
-import org.springframework.stereotype.Repository
-import java.util.*
+import org.springframework.context.annotation.Primary
+import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 
-@Repository
-open class UserRepositoryPostgreSQL @Lazy @Autowired constructor(private var userCrudRepository: UserCrudRepository) :
+
+@Component
+@Primary
+open class UserRepositoryPostgreSQL @Autowired constructor(private var userCrudRepository: UserCrudRepository) :
         UserRepository {
 
 
     override fun save(user: User) {
         kotlin.runCatching {
-        userCrudRepository.save(UserPostgreSQLMapper().dtoToEntity(user))
+            userCrudRepository.save(UserPostgreSQLMapper().dtoToEntity(user))
         }.onFailure {
-            throw UserException.UserSQLException("SQL exception saving")
+            throw UserException.UserSQLException("SQL exception saving ${it.message}")
         }
     }
 
@@ -30,13 +32,12 @@ open class UserRepositoryPostgreSQL @Lazy @Autowired constructor(private var use
     }
 
     override fun findByName(name: Name): List<User> {
-        return userCrudRepository.findByName(name = name.value).map {
-            userEntity -> UserPostgreSQLMapper().entityToDto(userEntity)
+        return userCrudRepository.findByName(name = name.value).map { userEntity ->
+            UserPostgreSQLMapper().entityToDto(userEntity)
         }
 
 
     }
-
 
 
 }

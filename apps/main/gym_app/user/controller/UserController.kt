@@ -23,8 +23,8 @@ class UserController(
     @Autowired private var userRepositoryPostgreSQL: UserRepositoryPostgreSQL
 ){
 
-    @Autowired private var userCreatorMongoDB = UserCreator(userRepositoryPostgreSQL)
-    @Autowired private var userCreatorSQL: UserCreator =  UserCreator(userMongoDbRepository)
+    private var userCreatorMongoDB = UserCreator(userMongoDbRepository)
+    private var userCreatorSQL: UserCreator =  UserCreator(userRepositoryPostgreSQL)
 
     @GetMapping
     fun userFinder(@RequestBody userRequest: UserRequest): ResponseEntity<UserResponse> {

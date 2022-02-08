@@ -8,13 +8,12 @@ import gym.user.infrastructure.mapper.UserMongoDbMapper
 import gym.user.infrastructure.repository.UserMongoRepository
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Lazy
-import org.springframework.context.annotation.Primary
+import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
+import shared.domain.Service
 
-@Repository
-@Primary
-open class UserRepositoryMongoDB @Lazy @Autowired constructor(private var userMongoRepository: UserMongoRepository) :
+@Component
+open class UserRepositoryMongoDB @Autowired constructor(private var userMongoRepository: UserMongoRepository) :
         UserRepository {
     override fun save(user: User) {
         userMongoRepository.save(UserMongoDbMapper().dtoToEntity(user))

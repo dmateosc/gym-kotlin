@@ -18,6 +18,7 @@ allprojects {
     apply(plugin = "java")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "org.springframework.boot")
+    apply(plugin = "kotlin-jpa")
 
 
     group = "gym-kotlin"
