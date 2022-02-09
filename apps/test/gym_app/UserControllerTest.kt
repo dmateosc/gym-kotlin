@@ -1,13 +1,10 @@
 package gym_app
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import gym.shared.application.UUID
 import gym.user.application.create.UserCreator
-import gym.user.application.create.model.CreateUserRequest
 import gym.user.infrastructure.UserRepositoryMongoDB
 import gym.user.infrastructure.UserRepositoryPostgreSQL
 import gym.user.infrastructure.controller.model.UserRequest
-import io.mockk.every
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
