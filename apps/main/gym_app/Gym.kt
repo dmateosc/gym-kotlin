@@ -18,8 +18,8 @@ import org.springframework.boot.runApplication as runApplication
 
                 )
 @EnableMongoRepositories("gym.user")
-@EnableJpaRepositories("gym.user")
-@EntityScan("gym.user")
+@EnableJpaRepositories("gym.user", "shared")
+@EntityScan("gym.user", "shared")
 class Gym
 fun main(args: Array<String>) {
     val runApplication = runApplication<Gym>(*args)

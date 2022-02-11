@@ -35,25 +35,25 @@ class UserController(
     @PostMapping
     fun createUser(@RequestBody userRequest: UserRequest) {
 
-        userCreatorSQL.create(CreateUserRequest(
-            name = userRequest.name,
-            first_lastname = userRequest.first_lastname,
-            second_lastname = userRequest.second_lastname,
-            email = userRequest.email,
-            age = userRequest.age,
-            password = userRequest.password,
-            dni = userRequest.dni)
-        )
-
-        userCreatorMongoDB.create(CreateUserRequest(
-            name = userRequest.name,
-            first_lastname = userRequest.first_lastname,
-            second_lastname = userRequest.second_lastname,
-            email = userRequest.email,
-            age = userRequest.age,
-            password = userRequest.password,
-            dni = userRequest.dni)
-        )
+//        userCreatorSQL.create(CreateUserRequest(
+//            name = userRequest.name!!,
+//            first_lastname = userRequest.first_lastname!!,
+//            second_lastname = userRequest.second_lastname!!,
+//            email = userRequest.email!!,
+//            age = userRequest.age!!,
+//            password = userRequest.password!!,
+//            dni = userRequest.dni!!)
+//        )
+//
+//        userCreatorMongoDB.create(CreateUserRequest(
+//            name = userRequest.name,
+//            first_lastname = userRequest.first_lastname,
+//            second_lastname = userRequest.second_lastname,
+//            email = userRequest.email,
+//            age = userRequest.age,
+//            password = userRequest.password,
+//            dni = userRequest.dni)
+//        )
     }
 
 }

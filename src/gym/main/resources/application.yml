@@ -10,6 +10,12 @@ spring:
     username: gym
     password: gym
 
+  rabbitmq:
+    host: lohalhost
+    port: 5672
+    addresses: localhost:5672
+    username: gym
+    password: gym
   data:
     mongodb:
       uri: mongodb+srv://gym:2dQbFblLS8ABlvRg@cluster0.6hzbg.mongodb.net/gym?retryWrites=true&w=majority

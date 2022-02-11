@@ -65,6 +65,9 @@ allprojects {
         implementation("io.projectreactor.spring:reactor-spring-messaging:2.0.7.RELEASE")
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.5")
         implementation("io.projectreactor:reactor-core:2.0.8.RELEASE")
+        implementation("org.springframework.boot:spring-boot-starter-amqp")
+        implementation ("org.reflections:reflections:0.9.11")
+
 
     }
 
@@ -124,6 +127,7 @@ subprojects {
         implementation("org.hibernate:hibernate-core:5.4.9.Final")
         implementation("io.github.cdimascio:java-dotenv:5.1.3")
         implementation("org.apache.tomcat:tomcat-dbcp:9.0.29")
+        implementation ("com.google.apis:google-api-services-vision:v1-rev369-1.23.0")
 
 
         //security

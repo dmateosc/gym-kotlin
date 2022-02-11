@@ -1,9 +1,12 @@
 package gym.user.domain.model
 
+import gym.shared.domain.AggregateRoot
+import gym.user.application.create.UserCreator
 import gym.user.domain.exceptions.errors.UserException
+import shared.domain.UserCreateDomainEvent
 
 class User(
-) {
+): AggregateRoot() {
     private  var userId: UserId? = null
     private lateinit var name: Name
     private lateinit var firstLastName: LastName
@@ -80,6 +83,35 @@ class User(
 
     fun dni(): DNI{
         return dni
+    }
+
+    fun create(userId: UserId,
+               name: Name,
+               firstLastName: LastName,
+               secondLastName: LastName,
+               email: Email,
+               age: Age,
+               password: Password,
+               dni: DNI
+              ): User{
+        var user = User(userId,
+                name,
+                firstLastName,
+                secondLastName,
+                email,
+                age,
+                password,
+                dni)
+        user.record(UserCreateDomainEvent(
+            userId.value,
+            name.value,
+            firstLastName.value,
+            secondLastName.value,
+            email.value,
+            age.value,
+            password.value,
+            dni.value))
+        return user
     }
 }
 
