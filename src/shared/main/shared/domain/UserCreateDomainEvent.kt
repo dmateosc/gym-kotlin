@@ -1,5 +1,6 @@
 package shared.domain
 
+import shared.infrastructure.config.DomainEventSubscriber
 import java.io.Serializable
 import java.util.HashMap
 
@@ -24,7 +25,7 @@ class UserCreateDomainEvent(): DomainEvent() {
         password: String,
         dni: String
                ) : this(){
-        super.DomainEvent(aggregateId = userId)
+        super.aggregateId= aggregateId
         this.userId = userId
         this.name = name
         this.secondLastName = secondLastName

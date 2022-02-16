@@ -10,6 +10,7 @@ import shared.infrastructure.persistence.DomainEventRepository
 import java.sql.Timestamp
 import java.util.*
 import javax.transaction.Transactional
+import kotlin.reflect.KClass
 
 @Service
 open class PostgreSQLConsumer(
@@ -45,13 +46,11 @@ open class PostgreSQLConsumer(
     private fun executeSubscribers(
         id: String, aggregateId: String, eventName: String, body: String, occurredOn: Timestamp
                                   ) {
+        val domainEventClass: KClass<out DomainEvent> = domainEventsInformation.forName(eventName)
 
+        val nullInstance: DomainEvent = domainEventClass::class.java.getConstructor().newInstance().objectInstance!!
 
-        val domainEventClass: Class<out DomainEvent> = domainEventsInformation.forName(eventName)
-
-        val nullInstance: DomainEvent = domainEventClass.getConstructor().newInstance()
-
-        val fromPrimitivesMethod = domainEventClass.getMethod(
+        val fromPrimitivesMethod = domainEventClass::class.java.getMethod(
             "fromPrimitives",
             String::class.java,
             HashMap::class.java,

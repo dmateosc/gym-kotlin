@@ -4,24 +4,22 @@ import java.io.Serializable
 import java.time.LocalDateTime
 import java.util.*
 
-abstract class DomainEvent {
+sealed class DomainEvent() {
     var aggregateId: String? = null
     var eventId: String? = null
     var occurredOn: String? = null
 
-    fun DomainEvent(aggregateId: String?) {
+    constructor(aggregateId: String?):this() {
         this.aggregateId = aggregateId
         eventId = UUID.randomUUID().toString()
         occurredOn = LocalDateTime.now().toString()
     }
 
-    fun DomainEvent(aggregateId: String?, eventId: String?, occurredOn: String?) {
+    constructor(aggregateId: String?, eventId: String?, occurredOn: String?) :this(){
         this.aggregateId = aggregateId
         this.eventId = eventId
         this.occurredOn = occurredOn
     }
-
-    protected fun DomainEvent() {}
 
     abstract fun eventName(): String?
 
