@@ -24,21 +24,21 @@ import org.springframework.test.web.servlet.post
 @ComponentScan("gym.user")
 internal class UserControllerTest {
 
-    @Autowired
-    lateinit var mockMvc: MockMvc
+//    @Autowired
+//    lateinit var mockMvc: MockMvc
+//
+//
+//    private lateinit var userCreatorMongoDB: UserCreator
+//    private lateinit var userCreatorSql: UserCreator
+//    private lateinit var repositorySql: UserRepositoryPostgreSQL
 
-
-    private lateinit var userCreatorMongoDB: UserCreator
-    private lateinit var userCreatorSql: UserCreator
-    private lateinit var repositorySql: UserRepositoryPostgreSQL
-
-    @BeforeEach
-    private fun setUp() {
-        val repositoryMongo = mockk<UserRepositoryMongoDB>()
-        repositorySql = mockk()
-        userCreatorSql = UserCreator(repositorySql)
-        userCreatorMongoDB = UserCreator(repositoryMongo)
-    }
+//    @BeforeEach
+//    private fun setUp() {
+//        val repositoryMongo = mockk<UserRepositoryMongoDB>()
+//        repositorySql = mockk()
+//        userCreatorSql = UserCreator(repositorySql)
+//        userCreatorMongoDB = UserCreator(repositoryMongo)
+//    }
 
 //    @Test
 //    fun `should be ok`() {
@@ -82,30 +82,30 @@ internal class UserControllerTest {
 //            }
 //    }
 
-
-    @Test
-    fun `should be 400`() {
-
-        mockMvc.post("/") {
-            contentType = MediaType.APPLICATION_JSON
-            content = ObjectMapper().writeValueAsString(
-                UserRequest(
-                    name = "prueba",
-                    first_lastname = "prueba",
-                    password = "prueba",
-                    email = "prueba",
-                    dni = "prueba",
-                    age = 1,
-                    second_lastname = "prueba"
-                           )
-                                                       )
-            accept = MediaType.APPLICATION_JSON
-        }.andExpect {
-            status { isBadRequest() }
-        }
-
-
-    }
+//
+//    @Test
+//    fun `should be 400`() {
+//
+//        mockMvc.post("/") {
+//            contentType = MediaType.APPLICATION_JSON
+//            content = ObjectMapper().writeValueAsString(
+//                UserRequest(
+//                    name = "prueba",
+//                    first_lastname = "prueba",
+//                    password = "prueba",
+//                    email = "prueba",
+//                    dni = "prueba",
+//                    age = 1,
+//                    second_lastname = "prueba"
+//                           )
+//                                                       )
+//            accept = MediaType.APPLICATION_JSON
+//        }.andExpect {
+//            status { isBadRequest() }
+//        }
+//
+//
+//    }
 
 
 }

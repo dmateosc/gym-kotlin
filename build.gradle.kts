@@ -65,7 +65,7 @@ allprojects {
         implementation("io.projectreactor.spring:reactor-spring-messaging:2.0.7.RELEASE")
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.5")
         implementation("io.projectreactor:reactor-core:2.0.8.RELEASE")
-        implementation("org.springframework.amqp:spring-rabbit:2.4.2")
+        implementation("org.springframework.boot:spring-boot-starter-amqp:2.3.12.RELEASE")
         implementation ("org.reflections:reflections:0.9.11")
         implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
 
@@ -146,7 +146,6 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.6.1")
         implementation("io.projectreactor:reactor-bus:2.0.8.RELEASE")
         implementation("io.projectreactor.spring:reactor-spring-messaging:2.0.7.RELEASE")
-        implementation("org.springframework.amqp:spring-rabbit:2.4.2")
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.5")
         implementation("io.projectreactor:reactor-core:2.0.8.RELEASE")
     }
