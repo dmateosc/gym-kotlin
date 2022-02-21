@@ -1,7 +1,8 @@
 package gym.user.application.create.model
 
-data class CreateUserRequest (
-    val userId: String,
+import shared.domain.bus.command.Command
+
+data class CreateUserCommand(
     val dni: String,
     val name: String,
     val first_lastname: String,
@@ -9,4 +10,4 @@ data class CreateUserRequest (
     val age: Int,
     val email: String,
     val password: String
-)
+                            ): Command

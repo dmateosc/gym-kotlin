@@ -5,14 +5,13 @@ import shared.domain.Service
 import shared.infrastructure.config.DomainEventSubscriber
 
 import java.util.*
-import kotlin.reflect.KClass
 import kotlin.reflect.full.findAnnotation
 
 @Service
-class DomainEventSubscribersInformation {
+class DomainEventSubscribersInformation() {
     var information: HashMap<Class<*>, DomainEventSubscriberInformation>? = null
 
-    constructor() {
+    init {
         scanDomainEventSubscribers()
     }
 
