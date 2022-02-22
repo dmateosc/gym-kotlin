@@ -1,6 +1,5 @@
 package gym_app
 
-import org.springframework.amqp.rabbit.annotation.EnableRabbit
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.context.annotation.ComponentScan
@@ -24,9 +23,6 @@ import org.springframework.boot.runApplication as runApplication
 class Gym
 fun main(args: Array<String>) {
     val runApplication = runApplication<Gym>(*args)
-    run{
-        runApplication
-
-    }
+    run { runApplication }
 
 }

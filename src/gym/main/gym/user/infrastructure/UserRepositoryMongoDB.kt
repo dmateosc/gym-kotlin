@@ -6,11 +6,8 @@ import gym.user.domain.model.UserId
 import gym.user.domain.repository.UserRepository
 import gym.user.infrastructure.mapper.UserMongoDbMapper
 import gym.user.infrastructure.repository.UserMongoRepository
-
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import org.springframework.stereotype.Repository
-import shared.domain.Service
 
 @Component
 open class UserRepositoryMongoDB @Autowired constructor(private var userMongoRepository: UserMongoRepository) :
@@ -24,7 +21,7 @@ open class UserRepositoryMongoDB @Autowired constructor(private var userMongoRep
     }
 
     override fun findByName(name: Name): List<User> {
-        TODO("Not yet implemented")
+        TODO()
     }
 
 }

@@ -11,7 +11,7 @@ open class ApiController(private var queryBus: QueryBus, private var commandBus:
         commandBus.dispatch(command)
     }
 
-    protected open fun <R> ask(query: Query): R {
+    protected open fun ask(query: Query): shared.infrastructure.bus.query.Response {
         return queryBus.ask(query)
     }
 

@@ -1,22 +1,13 @@
 package shared.infrastructure.bus.event.postgresql
 
 import com.ninjasquad.springmockk.MockkBean
-import io.mockk.every
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import shared.domain.DomainEvent
-import shared.domain.UserCreateDomainEvent
 import shared.infrastructure.bus.event.DomainEventsInformation
 import shared.infrastructure.persistence.DomainEventRepository
-import java.sql.Timestamp
-import java.time.Instant
-import java.util.*
 
 @ExtendWith(MockKExtension::class)
 internal class PostgreSQLConsumerTest {

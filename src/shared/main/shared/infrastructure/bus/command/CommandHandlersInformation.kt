@@ -13,7 +13,7 @@ class CommandHandlersInformation() {
 
     init {
         val reflections = Reflections("gym")
-        val classes: Set<Class<out CommandHandler<*>>> = setOf(CommandHandler::class.java)
+        val classes: Set<Class<out CommandHandler<*>>> = reflections.getSubTypesOf(CommandHandler::class.java)
 
         indexedCommandHandlers = formatHandlers(classes)
     }
@@ -29,7 +29,7 @@ class CommandHandlersInformation() {
         val handlers: HashMap<Class<out Command>, Class<out CommandHandler<*>>> =
             HashMap()
         for (handler in commandHandlers) {
-            val paramType = handler.genericInterfaces as ParameterizedType
+            val paramType = handler.genericInterfaces[0] as ParameterizedType
             val commandClass = paramType.actualTypeArguments[0] as Class<out Command>
             handlers[commandClass] = handler
         }

@@ -1,10 +1,8 @@
 package shared.infrastructure.bus.event.rabbitmq
 
 import org.springframework.amqp.core.*
-import org.springframework.amqp.rabbit.annotation.EnableRabbit
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory
 import org.springframework.amqp.rabbit.connection.ConnectionFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import shared.infrastructure.bus.event.DomainEventSubscribersInformation
@@ -75,7 +73,7 @@ open class RabbitMqEventBusConfiguration
         retryDomainEventsExchange: TopicExchange,
         deadLetterDomainEventsExchange: TopicExchange
                                              ): Collection<Collection<Declarable>> {
-        return domainEventSubscribersInformation.all().stream().map { information ->
+        return domainEventSubscribersInformation.all().map { information ->
             val queueName: String = RabbitMqQueueNameFormatter.format(information)
             val retryQueueName: String = RabbitMqQueueNameFormatter.formatRetry(information)
             val deadLetterQueueName: String = RabbitMqQueueNameFormatter.formatDeadLetter(information)

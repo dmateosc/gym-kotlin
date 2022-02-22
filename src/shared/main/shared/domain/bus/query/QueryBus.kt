@@ -1,8 +1,8 @@
 package shared.domain.bus.query
 
-import shared.domain.Service
+import shared.infrastructure.bus.query.Response
 
-@Service
+
 interface QueryBus {
-    fun <R> ask(query: Query): R
+    fun ask(query: Query): Response
 }
