@@ -19,8 +19,8 @@ open class SecurityConfiguration: WebSecurityConfigurerAdapter(){
             .csrf().disable()
             .authorizeRequests()
             .antMatchers("/actuator/**", "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
-            .antMatchers(HttpMethod.POST, "/").permitAll()
-            .antMatchers(HttpMethod.GET, "/").permitAll().anyRequest().authenticated()
+            .antMatchers(HttpMethod.POST, "/**").permitAll()
+            .antMatchers(HttpMethod.GET, "/**").permitAll().anyRequest().authenticated()
     }
 
 }

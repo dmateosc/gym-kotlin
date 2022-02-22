@@ -1,6 +1,8 @@
 package gym.user.infrastructure.command.create
 
+import gym.shared.application.UUID
 import gym.user.application.create.UserCreator
+import gym.user.application.create.model.CreateUser
 import gym.user.domain.model.*
 import gym.user.infrastructure.UserRepositoryPostgreSQL
 import gym.user.infrastructure.command.create.model.UserCommandPostgresSQL
@@ -14,16 +16,16 @@ class CommandPostgreSQLHandler(private val userRepository: UserRepositoryPostgre
     override fun handle(command: UserCommandPostgresSQL) {
         val userCreator = UserCreator(userRepository)
         userCreator.create(
-            User(
-                UserId(UUID.randomUUID().toString()),
-                Name(command.name),
-                LastName(command.first_lastname),
-                LastName(command.second_lastname),
-                Email(command.email),
-                Age(command.age),
-                Password(command.password),
-                DNI(command.dni)
-                )
+            CreateUser(
+                UUID().randomUUID(),
+                command.name,
+                command.first_lastname,
+                command.second_lastname,
+                command.email,
+                command.age,
+                command.password,
+                command.dni
+            )
                           )
 
     }

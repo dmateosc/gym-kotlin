@@ -1,10 +1,12 @@
 package gym.user.infrastructure
 
+import gym.user.domain.model.DNI
 import gym.user.domain.model.Name
 import gym.user.domain.model.User
 import gym.user.domain.model.UserId
 import gym.user.domain.repository.UserRepository
 import gym.user.infrastructure.exceptions.UserException
+import gym.user.infrastructure.mapper.UserMongoDbMapper
 import gym.user.infrastructure.mapper.UserPostgreSQLMapper
 import gym.user.infrastructure.repository.UserCrudRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,6 +30,10 @@ open class UserRepositoryPostgreSQL @Autowired constructor(private var userCrudR
 
     override fun findById(userId: UserId): User {
         return UserPostgreSQLMapper().entityToDto(userCrudRepository.findById(userId.value).get())
+    }
+
+    override fun findByDNI(dni: DNI): User {
+        return UserPostgreSQLMapper().entityToDto(userCrudRepository.findByDni(dni.value))
     }
 
     override fun findByName(name: Name): List<User> {

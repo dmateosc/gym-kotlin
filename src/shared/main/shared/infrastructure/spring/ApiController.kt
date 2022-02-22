@@ -5,7 +5,7 @@ import shared.domain.bus.command.CommandBus
 import shared.domain.bus.query.Query
 import shared.domain.bus.query.QueryBus
 
-open class ApiController(private var queryBus: QueryBus, private var commandBus: CommandBus) {
+open class ApiController(var queryBus: QueryBus, private var commandBus: CommandBus) {
 
     protected open fun dispatch(command: Command) {
         commandBus.dispatch(command)

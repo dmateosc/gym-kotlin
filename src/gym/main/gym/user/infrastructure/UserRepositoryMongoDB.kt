@@ -1,5 +1,6 @@
 package gym.user.infrastructure
 
+import gym.user.domain.model.DNI
 import gym.user.domain.model.Name
 import gym.user.domain.model.User
 import gym.user.domain.model.UserId
@@ -18,6 +19,10 @@ open class UserRepositoryMongoDB @Autowired constructor(private var userMongoRep
 
     override fun findById(userId: UserId): User {
         return UserMongoDbMapper().entityToDto(userMongoRepository.findByUserId(userId))
+    }
+
+    override fun findByDNI(dni: DNI): User {
+        return UserMongoDbMapper().entityToDto(userMongoRepository.findByDni(dni))
     }
 
     override fun findByName(name: Name): List<User> {
