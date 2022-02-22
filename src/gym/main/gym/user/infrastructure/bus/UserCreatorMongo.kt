@@ -1,6 +1,8 @@
 package gym.user.infrastructure.bus
 
+import gym.shared.application.UUID
 import gym.user.application.create.UserCreator
+import gym.user.application.create.model.CreateUser
 import gym.user.domain.model.*
 import gym.user.domain.repository.UserRepository
 import gym.user.infrastructure.UserRepositoryMongoDB
@@ -17,16 +19,17 @@ class UserCreatorMongo(private val userRepository: UserRepositoryMongoDB) {
 
     @EventListener
     fun on(event: UserCreateDomainEvent) {
-        val user = User(
-            UserId(event.userId!!),
-            Name(event.name),
-            LastName(event.firstLastName),
-            LastName(event.secondLastName),
-            Email(event.email),
-            Age(event.age),
-            Password(event.password),
-            DNI(event.dni)
+        val user = CreateUser(
+            UUID().randomUUID(),
+            event.name,
+            event.firstLastName,
+            event.secondLastName,
+            event.email,
+            event.age,
+            event.password,
+            event.dni
         )
+
         UserCreator(userRepository).create(
             user
         )

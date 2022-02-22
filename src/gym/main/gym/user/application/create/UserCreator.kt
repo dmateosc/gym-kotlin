@@ -1,5 +1,6 @@
 package gym.user.application.create
 
+import gym.user.application.create.model.CreateUser
 import gym.user.domain.model.*
 import gym.user.domain.repository.UserRepository
 import org.springframework.context.event.EventListener
@@ -16,8 +17,19 @@ class UserCreator(
                  ) {
 
     fun create(
-        user: User
+        event: CreateUser
               ) {
+        val user = User(
+            UserId(event.userId!!),
+            Name(event.name),
+            LastName(event.firstLastName),
+            LastName(event.secondLastName),
+            Email(event.email),
+            Age(event.age),
+            Password(event.password),
+            DNI(event.dni)
+        )
+
         userRepository.save(
             user
                            )
