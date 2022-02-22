@@ -29,7 +29,7 @@ class QueryHandlersInformation {
     }
 
     init {
-        val reflections = Reflections("tv.codely")
+        val reflections = Reflections("gym")
         val classes: Set<Class<out QueryHandler<Query,Response>>> = reflections
             .getSubTypesOf(QueryHandler::class.java) as Set<Class<out QueryHandler<Query, Response>>>
         indexedQueryHandlers = formatHandlers(classes)

@@ -16,7 +16,7 @@ class UserCreateDomainEvent(): DomainEvent() {
     lateinit var dni: String
 
     constructor(
-        userId: String,
+        userId: String?= "",
         name: String,
         firstLastName: String,
         secondLastName: String,

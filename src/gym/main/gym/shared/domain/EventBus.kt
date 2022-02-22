@@ -1,10 +1,9 @@
 package gym.shared.domain
 
-interface EventBus {
-    fun send(event: Event)
+import shared.domain.DomainEvent
 
-    fun sendAll(events: List<Event>) {
-        events.forEach(this::send)
-    }
+interface EventBus {
+    fun publish(event: DomainEvent)
+
 
 }

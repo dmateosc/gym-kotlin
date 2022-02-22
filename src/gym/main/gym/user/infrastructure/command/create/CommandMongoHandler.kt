@@ -2,17 +2,18 @@ package gym.user.infrastructure.command.create
 
 import gym.user.application.create.UserCreator
 import gym.user.domain.model.*
-import gym.user.infrastructure.UserRepositoryPostgreSQL
-import gym.user.infrastructure.command.create.model.CreateUserCommandPostgresSQL
+import gym.user.infrastructure.UserRepositoryMongoDB
+import gym.user.infrastructure.command.create.model.UserCommandMongo
 import org.springframework.stereotype.Service
 import shared.domain.bus.command.CommandHandler
 import java.util.*
 
 @Service
-class UserCreatorCommandPostgreSQLHandler(private val userRepository: UserRepositoryPostgreSQL) : CommandHandler<CreateUserCommandPostgresSQL> {
+class CommandMongoHandler(private val userRepository: UserRepositoryMongoDB) : CommandHandler<UserCommandMongo> {
 
-    override fun handle(command: CreateUserCommandPostgresSQL) {
+    override fun handle(command: UserCommandMongo) {
         val userCreator = UserCreator(userRepository)
+
         userCreator.create(
             User(
                 UserId(UUID.randomUUID().toString()),

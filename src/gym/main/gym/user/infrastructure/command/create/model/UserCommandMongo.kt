@@ -2,7 +2,7 @@ package gym.user.infrastructure.command.create.model
 
 import shared.domain.bus.command.Command
 
-data class CreateUserCommandMongo(
+data class UserCommandMongo(
     val dni: String,
     val name: String,
     val first_lastname: String,
