@@ -16,10 +16,6 @@ class UserEventBus(val publisher: ApplicationEventPublisher): EventBus {
         publisher.publishEvent(event)
     }
 
-//    override fun publish(events: List<DomainEvent>) {
-//        TODO("Not yet implemented")
-////        publisher.publishEvent(events.)
-//    }
 
 
 }
