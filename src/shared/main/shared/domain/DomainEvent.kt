@@ -3,6 +3,7 @@ package shared.domain
 import java.io.Serializable
 import java.time.LocalDateTime
 import java.util.*
+import kotlin.collections.HashMap
 
 sealed class DomainEvent() {
     var aggregateId: String? = null
@@ -26,11 +27,11 @@ sealed class DomainEvent() {
     abstract fun toPrimitives(): HashMap<String, Serializable>
 
     abstract fun fromPrimitives(
-        aggregateId: String?,
-        body: HashMap<String?, Serializable?>?,
-        eventId: String?,
-        occurredOn: String?
-                               ): DomainEvent?
+        aggregateId: String,
+        body: HashMap<String, Serializable>,
+        eventId: String,
+        occurredOn: String
+                               ): DomainEvent
 
     fun aggregateId(): String? {
         return aggregateId

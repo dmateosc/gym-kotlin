@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException
 class RabbitMqDomainEventsConsumer {
 
     private val MAX_RETRIES = 2
-    private var deserializer: DomainEventJsonDeserializer? = null
+    private var deserializer: DomainEventJsonDeserializer
     private var context: ApplicationContext? = null
     private var publisher: RabbitMqPublisher? = null
     private val domainEventSubscribers = HashMap<String, Any>()
@@ -27,7 +27,7 @@ class RabbitMqDomainEventsConsumer {
 
     constructor(
         information: DomainEventSubscribersInformation,
-        deserializer: DomainEventJsonDeserializer?,
+        deserializer: DomainEventJsonDeserializer,
         context: ApplicationContext?,
         registry: RabbitListenerEndpointRegistry,
         publisher: RabbitMqPublisher?

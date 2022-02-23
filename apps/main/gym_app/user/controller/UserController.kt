@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.*
 import shared.domain.UserCreateDomainEvent
 import shared.domain.bus.command.CommandBus
 import shared.domain.bus.query.QueryBus
+import shared.infrastructure.bus.event.rabbitmq.RabbitMqDomainEventsConsumer
+import shared.infrastructure.bus.event.rabbitmq.RabbitMqPublisher
 import shared.infrastructure.spring.ApiController
 
 
 
 @RestController
-class UserController(commandBus: CommandBus,queryBus: QueryBus,val userEventBus: UserEventBus) :
+class UserController(commandBus: CommandBus,queryBus: QueryBus,val userEventBus: UserEventBus,
+                     val rabbitMqPublisher: RabbitMqPublisher, val rabbitMqDomainEventsConsumer: RabbitMqDomainEventsConsumer) :
     ApiController(queryBus = queryBus, commandBus = commandBus) {
 
     @GetMapping("/{dni}")
@@ -31,6 +34,17 @@ class UserController(commandBus: CommandBus,queryBus: QueryBus,val userEventBus:
 
     @PostMapping
     fun createUser(@RequestBody userRequest: UserRequest): ResponseEntity<String> {
+
+//        rabbitMqPublisher.publish(UserCreateDomainEvent(
+//            name = userRequest.name!!,
+//            firstLastName = userRequest.first_lastname!!,
+//            secondLastName = userRequest.second_lastname!!,
+//            email = userRequest.email!!,
+//            age = userRequest.age!!,
+//            password = userRequest.password!!,
+//            dni = userRequest.dni!!),"gym")
+
+//        rabbitMqDomainEventsConsumer.consume()
 
         userEventBus.publish(
             UserCreateDomainEvent(

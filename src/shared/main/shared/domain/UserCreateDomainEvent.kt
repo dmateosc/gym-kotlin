@@ -1,10 +1,9 @@
 package shared.domain
 
-import shared.infrastructure.config.DomainEventSubscriber
 import java.io.Serializable
-import java.util.HashMap
+import java.util.*
 
-class UserCreateDomainEvent(): DomainEvent() {
+class UserCreateDomainEvent(aggregateId: String?): DomainEvent(aggregateId) {
 
     var userId: String? = null
     lateinit var name: String
@@ -15,8 +14,10 @@ class UserCreateDomainEvent(): DomainEvent() {
     lateinit var password: String
     lateinit var dni: String
 
+    constructor() : this("")
+
     constructor(
-        userId: String?= "",
+        userId: String?= UUID.randomUUID().toString(),
         name: String,
         firstLastName: String,
         secondLastName: String,
@@ -24,8 +25,7 @@ class UserCreateDomainEvent(): DomainEvent() {
         age: Int,
         password: String,
         dni: String
-               ) : this(){
-        super.aggregateId= aggregateId
+               ) : this(userId){
         this.userId = userId
         this.name = name
         this.secondLastName = secondLastName
@@ -42,16 +42,32 @@ class UserCreateDomainEvent(): DomainEvent() {
     }
 
     override fun toPrimitives(): HashMap<String, Serializable> {
-        TODO("Not yet implemented")
+        return hashMapOf(
+            "userId" to this.userId!!,
+            "name" to this.name,
+            "secondLastName" to this.secondLastName,
+            "email" to this.email,
+            "firstLastName" to this.firstLastName,
+            "age" to this.age,
+            "password" to this.password,
+            "dni" to this.dni
+        )
     }
 
     override fun fromPrimitives(
-        aggregateId: String?,
-        body: HashMap<String?, Serializable?>?,
-        eventId: String?,
-        occurredOn: String?
-                               ): DomainEvent? {
-        TODO("Not yet implemented")
+        aggregateId: String,
+        body: HashMap<String, Serializable>,
+        eventId: String,
+        occurredOn: String
+                               ): DomainEvent {
+        return UserCreateDomainEvent(
+            name = body["name"] as String,
+            firstLastName = body["firstLastName"] as String,
+            secondLastName = body["secondLastName"] as String,
+            email = body["email"] as String,
+            age = body["age"] as Int,
+            password = body["password"] as String,
+            dni =  body["dni"]as String)
     }
 
 }

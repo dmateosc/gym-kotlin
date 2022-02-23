@@ -3,11 +3,8 @@ package gym.user.infrastructure.bus
 import gym.shared.application.UUID
 import gym.user.application.create.UserCreator
 import gym.user.application.create.model.CreateUser
-import gym.user.domain.model.*
-import gym.user.domain.repository.UserRepository
 import gym.user.infrastructure.UserRepositoryMongoDB
 import org.springframework.context.event.EventListener
-import shared.domain.DomainEvent
 import shared.domain.Service
 import shared.domain.UserCreateDomainEvent
 import shared.infrastructure.config.DomainEventSubscriber
