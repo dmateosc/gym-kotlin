@@ -3,8 +3,8 @@ package gym.user.infrastructure.controller
 //import gym.user.application.create.UserCreator
 //import gym.user.application.find.UserFinder
 //import gym.user.domain.model.UserId
-//import gym.user.infrastructure.UserRepositoryMongoDB
-//import gym.user.infrastructure.UserRepositoryPostgreSQL
+//import gym.user.infrastructure.repository.UserRepositoryMongoDB
+//import gym.user.infrastructure.repository.UserRepositoryPostgreSQL
 //import gym.user.infrastructure.controller.model.UserRequest
 //import gym.user.infrastructure.controller.model.UserResponse
 //import org.springframework.beans.factory.annotation.Autowired

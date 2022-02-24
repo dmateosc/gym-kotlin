@@ -1,4 +1,4 @@
-package gym.user.infrastructure
+package gym.user.infrastructure.repository
 
 import gym.user.domain.model.DNI
 import gym.user.domain.model.Name
@@ -9,8 +9,9 @@ import gym.user.infrastructure.mapper.UserMongoDbMapper
 import gym.user.infrastructure.repository.UserMongoRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 
-@Component
+@Repository
 open class UserRepositoryMongoDB @Autowired constructor(private var userMongoRepository: UserMongoRepository) :
         UserRepository {
     override fun save(user: User) {

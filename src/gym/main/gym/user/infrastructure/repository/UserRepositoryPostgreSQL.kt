@@ -1,4 +1,4 @@
-package gym.user.infrastructure
+package gym.user.infrastructure.repository
 
 import gym.user.domain.model.DNI
 import gym.user.domain.model.Name
@@ -6,15 +6,14 @@ import gym.user.domain.model.User
 import gym.user.domain.model.UserId
 import gym.user.domain.repository.UserRepository
 import gym.user.infrastructure.exceptions.UserException
-import gym.user.infrastructure.mapper.UserMongoDbMapper
 import gym.user.infrastructure.mapper.UserPostgreSQLMapper
-import gym.user.infrastructure.repository.UserCrudRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 
 
-@Component
+@Repository
 @Primary
 open class UserRepositoryPostgreSQL @Autowired constructor(private var userCrudRepository: UserCrudRepository) :
         UserRepository {

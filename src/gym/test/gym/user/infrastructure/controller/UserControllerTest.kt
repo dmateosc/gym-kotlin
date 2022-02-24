@@ -1,8 +1,8 @@
 //package gym.gym.user.infraestructure.controller
 //
 //import gym.user.application.create.UserCreator
-//import gym.user.infrastructure.UserRepositoryMongoDB
-//import gym.user.infrastructure.UserRepositoryPostgreSQL
+//import gym.user.infrastructure.repository.UserRepositoryMongoDB
+//import gym.user.infrastructure.repository.UserRepositoryPostgreSQL
 //import gym.user.infrastructure.controller.model.UserRequest
 //import com.fasterxml.jackson.databind.ObjectMapper
 //import com.ninjasquad.springmockk.MockkBean
