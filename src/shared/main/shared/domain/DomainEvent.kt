@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.HashMap
 
-sealed class DomainEvent() {
+abstract class DomainEvent() {
     var aggregateId: String? = null
     var eventId: String? = null
     var occurredOn: String? = null

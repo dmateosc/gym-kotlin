@@ -12,21 +12,14 @@ import shared.infrastructure.config.ParameterNotExist
 import java.util.stream.Collectors
 
 @Configuration
-open class RabbitMqEventBusConfiguration
-{
-    private var domainEventSubscribersInformation: DomainEventSubscribersInformation
-    private var domainEventsInformation: DomainEventsInformation
+open class RabbitMqEventBusConfiguration(
+    private var domainEventSubscribersInformation: DomainEventSubscribersInformation,
+    private var domainEventsInformation: DomainEventsInformation,
     private var config: Parameter
+) {
     private var exchangeName: String
 
-    constructor(
-        domainEventSubscribersInformation: DomainEventSubscribersInformation,
-        domainEventsInformation: DomainEventsInformation,
-        config: Parameter
-                                          ) {
-        this.domainEventSubscribersInformation = domainEventSubscribersInformation
-        this.domainEventsInformation = domainEventsInformation
-        this.config = config
+    init {
         exchangeName = config["RABBITMQ_EXCHANGE"]
     }
 

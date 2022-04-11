@@ -1,10 +1,17 @@
 package gym_app
 
+import com.ninjasquad.springmockk.MockkBean
+import gym.user.infrastructure.bus.UserEventBus
+import io.mockk.every
 import io.mockk.junit5.MockKExtension
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.ComponentScan
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.post
 
 @ExtendWith(MockKExtension::class)
 @AutoConfigureMockMvc
@@ -12,13 +19,15 @@ import org.springframework.context.annotation.ComponentScan
 @ComponentScan("gym.user")
 internal class UserControllerTest {
 
-//    @Autowired
-//    lateinit var mockMvc: MockMvc
+    @Autowired
+    lateinit var mockMvc: MockMvc
 //
 //
 //    private lateinit var userCreatorMongoDB: UserCreator
 //    private lateinit var userCreatorSql: UserCreator
 //    private lateinit var repositorySql: UserRepositoryPostgreSQL
+    @MockkBean
+    lateinit var userEventBus: UserEventBus
 
 //    @BeforeEach
 //    private fun setUp() {
@@ -30,13 +39,10 @@ internal class UserControllerTest {
 
 //    @Test
 //    fun `should be ok`() {
-//
-//        val mockUUID = mockk<UUID>()
-//
-//        every { mockUUID.randomUUID() } returns "5c8126d3-32ac-4d7e-b2cb-e4d71b3cb3e0"
+
 //
 //        every {
-//            userCreatorMongoDB.create(
+//            userEventBus.publisher(
 //                CreateUserRequest(
 //                    name = "prueba",
 //                    password = "prueba",
@@ -69,7 +75,7 @@ internal class UserControllerTest {
 //                status { isOk() }
 //            }
 //    }
-
+//
 //
 //    @Test
 //    fun `should be 400`() {

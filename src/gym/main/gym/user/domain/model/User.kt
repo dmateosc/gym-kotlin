@@ -1,9 +1,8 @@
 package gym.user.domain.model
 
 import gym.shared.domain.AggregateRoot
-import gym.user.application.create.UserCreator
+import gym.user.application.create.model.UserCreateDomainEvent
 import gym.user.domain.exceptions.errors.UserException
-import shared.domain.UserCreateDomainEvent
 
 class User(
 ): AggregateRoot() {

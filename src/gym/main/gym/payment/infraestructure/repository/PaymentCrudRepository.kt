@@ -1,6 +1,6 @@
-package gym.payment.infraestructure.respository
+package gym.payment.infraestructure.repository
 
-import gym.payment.infraestructure.respository.model.PaysEntity
+import gym.payment.infraestructure.repository.model.PaysEntity
 import org.springframework.data.repository.CrudRepository
 
 interface PaymentCrudRepository : CrudRepository<PaysEntity, String> {

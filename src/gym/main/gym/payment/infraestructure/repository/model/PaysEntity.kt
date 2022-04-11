@@ -1,4 +1,4 @@
-package gym.payment.infraestructure.respository.model
+package gym.payment.infraestructure.repository.model
 
 import java.time.LocalDate
 

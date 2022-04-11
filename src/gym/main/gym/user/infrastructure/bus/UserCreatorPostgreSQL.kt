@@ -3,10 +3,10 @@ package gym.user.infrastructure.bus
 import gym.shared.application.UUID
 import gym.user.application.create.UserCreator
 import gym.user.application.create.model.CreateUser
+import gym.user.application.create.model.UserCreateDomainEvent
 import gym.user.infrastructure.repository.UserRepositoryPostgreSQL
 import org.springframework.context.event.EventListener
 import shared.domain.Service
-import shared.domain.UserCreateDomainEvent
 import shared.infrastructure.config.DomainEventSubscriber
 
 

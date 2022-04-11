@@ -1,4 +1,4 @@
-package gym.payment.infraestructure.respository
+package gym.payment.infraestructure.repository
 
 import gym.payment.domain.model.PayId
 import gym.payment.domain.model.Pays

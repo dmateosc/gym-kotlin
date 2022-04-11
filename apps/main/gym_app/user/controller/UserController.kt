@@ -5,13 +5,11 @@ import gym.user.application.find.UserResponse
 import gym.user.infrastructure.bus.UserEventBus
 import gym.user.infrastructure.command.create.model.UserCommandMongo
 import gym.user.infrastructure.command.create.model.UserCommandPostgresSQL
-import gym.user.infrastructure.query.finder.model.UserQueryMongo
 import gym.user.infrastructure.query.finder.model.UserQueryPostgreSQL
 import gym_app.user.controller.model.UserRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import shared.domain.UserCreateDomainEvent
 import shared.domain.bus.command.CommandBus
 import shared.domain.bus.query.QueryBus
 import shared.infrastructure.bus.event.rabbitmq.RabbitMqDomainEventsConsumer

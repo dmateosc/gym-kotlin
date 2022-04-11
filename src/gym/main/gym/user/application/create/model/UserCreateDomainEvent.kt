@@ -1,5 +1,6 @@
-package shared.domain
+package gym.user.application.create.model
 
+import shared.domain.DomainEvent
 import java.io.Serializable
 import java.util.*
 
